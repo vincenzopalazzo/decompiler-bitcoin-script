@@ -1,0 +1,3 @@
+[submodule "includes/bitcoincrypto"]
+	path = includes/bitcoincrypto
+	url = https://github.com/vincenzopalazzo/Bitcoin-Cryptography-Library.git
