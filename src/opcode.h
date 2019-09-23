@@ -30,6 +30,7 @@ public:
         opCodeList.emplace(std::stoul("0x76", nullptr, 16), "OP_DUP");
         opCodeList.emplace(std::stoul("0x88", nullptr, 16), "OP_EQUALVERIFY");
         opCodeList.emplace(std::stoul("0xac", nullptr, 16), "OP_CHECKSIG");
+        opCodeList.emplace(std::stoul("0x87", nullptr, 16), "OP_EQUAL");
     }
 
     enum class OP_CODE{
@@ -103,7 +104,6 @@ public:
         OP_AND = 0x84,
         OP_OR = 0x85,
         OP_XOR = 0x86,
-        OP_EQUAL = 0x87,
         OP_RESERVED1 = 0x89,
         OP_RESERVED2 = 0x8a,
 

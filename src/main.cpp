@@ -1,4 +1,3 @@
-// A simple program that computes the square root of a number
 #include <stdlib.h>
 #include <iostream>
 #include <sstream>
@@ -10,12 +9,11 @@
 #include <bitcoincrypto/cpp/Sha256Hash.hpp>
 #include <bitcoincrypto/cpp/Sha256.hpp>
 #include <bitcoincrypto/cpp/Base58Check.hpp>
+#include <bitcoinlib/base58.h>
 
 #include "opcode.h"
 
 using namespace std;
-
-std::string ToString(uint8_t value[Ripemd160::HASH_LEN]);
 
 int main(int argc, char *argv[]) {
 
@@ -30,6 +28,33 @@ int main(int argc, char *argv[]) {
 
     if (optCode == "OP_HASH160") {
         cout << "Finded the P2SHA";
+
+        string scriptHash = hex.substr(4, hex.length() - 6);
+        Bytes bytes = hexBytes(scriptHash.c_str());
+        bytes.insert(bytes.begin(), 1, 5);
+        
+        string address = EncodeBase58Check(bytes);
+
+        cout << "P2SH addresss is " << address;
+
+        string endOpCode = hex.substr(hex.length() - 2, 2);
+        int32_t optValueEnd = std::stoul(endOpCode, nullptr, 16);
+        auto optMapEnd = bitcoinOpCode.opCodeList.find(optValueEnd);
+        string optCodeEnd = optMapEnd->second;
+        if(optCodeEnd == "OP_EQUAL"){
+
+          cout << "\n\t----------------------------------------| Results |-----------------------------------" << endl;
+          cout << "\t                               ###  Script PUB KEY HASH  ###                            " << endl;
+          cout << "\t" << optCode << " "  << scriptHash << " " << optCodeEnd << endl;
+          cout << "\t                                                                                      " << endl;
+          cout << "\t The public key: " << address << "                                   " << endl;
+          cout << endl;
+          cout << "\t https://blockstream.info/address/" << address << endl;
+          cout << "\t______________________________________________________________________________________"<< endl;
+        }else{
+            cout << "ERROR Parsing" << endl;
+            return EXIT_FAILURE;
+        }
     } else if (optCode == "OP_DUP") {
         cout << "Finded the P2PKH" << endl;
 
@@ -117,28 +142,3 @@ int main(int argc, char *argv[]) {
     return EXIT_SUCCESS;
 }
 
-std::string ToString(uint8_t value[Ripemd160::HASH_LEN]){
-  std::string hashResult;
-  std::stringstream stream;
-  for(int i = 0; i < Ripemd160::HASH_LEN; i++){
-      int valueInt = static_cast<int>(value[i]);
-      stream << std::hex << std::setprecision(2) << std::setw(2) << std::setfill('0') << valueInt;
-  }
-  hashResult = stream.str();
-  return hashResult;
-}
-
-/*
-        uint8_t clone_has_raw[Ripemd160::HASH_LEN];
-        int position = 0;
-        for(int i = Ripemd160::HASH_LEN - 1; i >= 0; i--){
-            clone_has_raw[position] = result[i];
-            position++;
-        }
-        std::string hashResult;
-        std::stringstream stream;
-        for(int i = 0; i < Ripemd160::HASH_LEN; i++){
-            unsigned int valueInt = static_cast<unsigned int>(clone_has_raw[i]);
-            stream << std::hex << std::setfill('0')  << std::setprecision(2) << std::setw(2) << valueInt;
-        }
-        hashResult = stream.str();*/

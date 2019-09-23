@@ -21,7 +21,7 @@ set(SOURCE_FILES
 
 
 		#Bitcoin Lib
-		#includes/bitcoinlib/script.cpp
+		includes/bitcoinlib/base58.cpp
 		#includes/bitcoinlib/script_error.cpp
 		#includes/bitcoinlib/key_io.cpp
 		#includes/bitcoinlib/pubkey.cpp
@@ -33,7 +33,7 @@ set(SOURCE_FILES
 add_executable(Decompiler ${SOURCE_FILES})
 
 target_include_directories(Decompiler PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/includes)
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/includes/)
 
 target_include_directories(Decompiler PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/includes/bitcoincrypto/cpp)
