@@ -7,4 +7,3 @@ CMakeLists.txt.*
 decompile-bitcoin-script.cbp
 Decompiler
 Makefile
-includes/bitcoinlib

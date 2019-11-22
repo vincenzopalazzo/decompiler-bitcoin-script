@@ -11,15 +11,16 @@
 class BitcoinOPCode {
 
 public:
+
     std::map<int32_t, std::string> opCodeList;
 
     BitcoinOPCode() {
-        opCodeList.emplace(std::stoul("0x00", nullptr, 16), "OP_0");
         opCodeList.emplace(0x4c, "OP_PUSHDATA1");
         opCodeList.emplace(0x4d, "OP_PUSHDATA2");
         opCodeList.emplace(0x4e, "OP_PUSHDATA4");
         opCodeList.emplace(0x4f, "OP_1NEGATE");
         opCodeList.emplace(0x50, "OP_RESERVED");
+        opCodeList.emplace(std::stoul("0x00", nullptr, 16), "OP_0");
         opCodeList.emplace(0x51, "OP_1");
         opCodeList.emplace(0x52, "OP_2");
         opCodeList.emplace(0x53, "OP_3");
@@ -31,11 +32,15 @@ public:
         opCodeList.emplace(std::stoul("0x88", nullptr, 16), "OP_EQUALVERIFY");
         opCodeList.emplace(std::stoul("0xac", nullptr, 16), "OP_CHECKSIG");
         opCodeList.emplace(std::stoul("0x87", nullptr, 16), "OP_EQUAL");
+        opCodeList.emplace(std::stoul("0x52", nullptr, 16), "OP_2");
+        opCodeList.emplace(std::stoul("0x53", nullptr, 16), "OP_3");
+        opCodeList.emplace(std::stoul("0x54", nullptr, 16), "OP_4");
+        opCodeList.emplace(std::stoul("0x55", nullptr, 16), "OP_5");
     }
 
     enum class OP_CODE{
         // push value
-                OP_0 = 0x00,
+        OP_0 = 0x00,
         OP_FALSE = OP_0,
         OP_PUSHDATA1 = 0x4c,
         OP_PUSHDATA2 = 0x4d,
@@ -44,10 +49,6 @@ public:
         OP_RESERVED = 0x50,
         OP_1 = 0x51,
         OP_TRUE=OP_1,
-        OP_2 = 0x52,
-        OP_3 = 0x53,
-        OP_4 = 0x54,
-        OP_5 = 0x55,
         OP_6 = 0x56,
         OP_7 = 0x57,
         OP_8 = 0x58,
@@ -108,7 +109,7 @@ public:
         OP_RESERVED2 = 0x8a,
 
         // numeric
-                OP_1ADD = 0x8b,
+        OP_1ADD = 0x8b,
         OP_1SUB = 0x8c,
         OP_2MUL = 0x8d,
         OP_2DIV = 0x8e,
