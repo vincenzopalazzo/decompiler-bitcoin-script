@@ -128,8 +128,8 @@ int main(int argc, char *argv[]) {
     } else if((optValue != std::stoul("0x00", nullptr, 16)) && (optValue != std::stoul("0x76", nullptr, 16))){
         cout << "Transaction P2PK\n";
         cout << optValue << endl;
-        //string key = hex.substr(2, hex.length() - 4);
-        string key = "033da9f8938a5b947a723df21b73fbd3985b719249324d2c705acfb97d63a5df9e";
+        string key = hex.substr(2, hex.length() - 4);
+        //string key = "033da9f8938a5b947a723df21b73fbd3985b719249324d2c705acfb97d63a5df9e";
         opcode = hex.substr(hex.length() - 2, 2);
         optValue = std::stoul(opcode, nullptr, 16);
         optMap = bitcoinOpCode.opCodeList.find(optValue);
