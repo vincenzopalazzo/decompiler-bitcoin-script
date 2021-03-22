@@ -22,6 +22,8 @@ set(SOURCE_FILES
 
 		#Bitcoin Lib
 		includes/bitcoinlib/base58.cpp
+    includes/bitcoinlib/bech32.cpp
+    includes/bitcoinlib/segwit_addr.cpp
 		#includes/bitcoinlib/script_error.cpp
 		#includes/bitcoinlib/key_io.cpp
 		#includes/bitcoinlib/pubkey.cpp

@@ -8,5 +8,3 @@ echo 'Run P2SH script'
 ./Decompiler a9146e8ea702743a672edf2ee1d0c21737faf2b2aa8487
 echo 'Run P2WPKH script'
 ./Decompiler 00149d57c57c3573b58db6b50c10651fc23e40eac0a1
-echo 'Run P2WSH script' # Ad the following link https://blockstream.info/address/bc1qu4ekhuffwmx8zzucxw4v9cen8fd9a8ey4jruuj0gdz6fddggvq3s4g6esd
-./Decompiler 0020e5736bf12976cc710b9833aac2e3333a5a5e9f24ac87ce49e868b496b5086023
